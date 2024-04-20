@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    player login
+{% endblock %}
+
+{% block main %}
+
+    <img src="">
+    <form action="/register" method="POST" autocomplete="off" >
+        <div class="form-row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div>
+        </div>
+
+        <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Email ID">
+        <input type="number" class="form-control mb-2 mr-sm-2" placeholder="contact number">
+        <select name="native" class="form-select">
+            <option value="Indian">Indian</option>
+            <option value="overseas">overseas</option>
+        </select>
+
+        <select name="role" id="role" class="form-select" aria-label="Default select example">
+            <option selected>Role</option>
+            <option value="Batter">Batter</option>
+            <option value="Bowler">Bowler</option>
+            <option value="all_rounder">All rounder</option>
+        </select>
+
+        <select name="Batting style" class="form-select" aria-label="Default select example">
+            <option selected>Batting Style</option>
+            <option value="right handed">Right handed</option>
+            <option value="left handed">Left handed</option>
+            <option value="NULL">None</option>
+        </select>
+
+        <select name="Bowling style" class="form-select" aria-label="Default select example">
+            <option selected>Bowling Style</option>
+            <option value="right arm fast">Right arm fast</option>
+            <option value="right arm medium">Right arm medium</option>
+            <option value="right arm spin">Right arm spin</option>
+            <option value="left arm fast">Left arm fast</option>
+            <option value="left arm medium">Left arm medium</option>
+            <option value="left arm spin">Left arm spin</option>
+            <option value="NULL">None</option>
+        </select>
+            <label> Date of birth</label>
+            <input type="date"  class="form-control mb-2 mr-sm-2" name="dob" placeholder="Date of birth">
+        <input type="number" class="form-control mb-2 mr-sm-2" name="base price" placeholder="Base price">
+        <input type="password" class="form-control mb-2 mr-sm-2" name="password" placeholder="create password">
+        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="confrim password">
+
+        
+        <button type="button" class="btn btn-outline-primary btn-lg">submit</button>
+        
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            document.querySelector('button').onclick = function(){
+                
+            }
+        });
+    </script>
+
+
+{% endblock %}

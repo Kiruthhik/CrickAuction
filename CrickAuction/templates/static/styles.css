@@ -76,3 +76,15 @@ table {
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
   }
+
+
+  .thumbnail.with-border {
+    border: 1px solid #03020200; /* Add a grey border */
+    border-radius: 6px; /* Rounded corners */
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  #head {
+    color: #58e417; /* Adjust the color value as needed */
+  }
+  
