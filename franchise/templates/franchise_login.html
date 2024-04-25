@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    player login
+    franchise login
 {% endblock %}
 
 {% block main %}
@@ -10,7 +10,7 @@
         
     
     <form action="/login" method="POST" autocomplete="off" >
-        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Username" autofocus>
+        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Franchise Username" autofocus>
         <p>
 
         </p>
@@ -20,8 +20,7 @@
     <p>
 
     </p>
-    <a href="{% url 'players:player_register' %}">Not Registered?</a>
-
+    <a href="{% url 'franchise:franchise_register' %}">Not registered?</a>
 
 
 {% endblock %}

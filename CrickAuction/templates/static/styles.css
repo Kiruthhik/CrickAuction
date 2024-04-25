@@ -85,6 +85,18 @@ table {
   }
   
   #head {
-    color: #58e417; /* Adjust the color value as needed */
+    color: #58e417; 
   }
   
+  .bgimg {
+    background-image: url('franchise.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the background stays behind the content */
+  }

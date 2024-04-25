@@ -21,52 +21,54 @@
     </head>
 
     <body>
-
-        <nav class="bg-primary border navbar navbar-expand-md navbar-light text-white fixed-top">
-            <div class="container-fluid" >
-                <h1 id="head"><i>IPL</i> Auction</h1>
-                <!--<a class="navbar-brand" href="/"><span class="blue">I</span><span class="red"></span><span class="yellow">P</span><span class="green">L</span> <span class="red"> Auction</span></a> -->
-                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-
-        
-
-        <main class="container py-5 text-center">
-            <p>
-
-
-
-
-            </p>
-            <p>
-
-
-
-            </p>
-            {% block main %}{% endblock %}
-        </main>
-
-        <footer class="mb-5">
+        <div class="bgimg">
+            <nav class="bg-primary border navbar navbar-expand-md navbar-light text-white fixed-top">
+                <div class="container-fluid" >
+                    <h1 id="head"><i>IPL</i> Auction</h1>
+                    <!--<a class="navbar-brand" href="/"><span class="blue">I</span><span class="red"></span><span class="yellow">P</span><span class="green">L</span> <span class="red"> Auction</span></a> -->
+                    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
 
             
 
-           
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Adapted from https://stackoverflow.com/a/10162353
-                    const html = '<!DOCTYPE ' +
-                    document.doctype.name +
-                    (document.doctype.publicId ? ' PUBLIC "' + document.doctype.publicId + '"' : '') +
-                    (!document.doctype.publicId && document.doctype.systemId ? ' SYSTEM' : '') +
-                    (document.doctype.systemId ? ' "' + document.doctype.systemId + '"' : '') +
-                    '>\n' + document.documentElement.outerHTML;
-                    document.querySelector('form[action="https://validator.w3.org/check"] > input[name="fragment"]').value = html;
-                });
-            </script>
-        </footer>
+            <main class="container py-5 text-center">
+                <p>
+
+
+
+
+                </p>
+                <p>
+
+
+
+                </p>
+                {% block main %}{% endblock %}
+            </main>
+
+            <footer class="mb-5">
+
+                
+
+            
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Adapted from https://stackoverflow.com/a/10162353
+                        const html = '<!DOCTYPE ' +
+                        document.doctype.name +
+                        (document.doctype.publicId ? ' PUBLIC "' + document.doctype.publicId + '"' : '') +
+                        (!document.doctype.publicId && document.doctype.systemId ? ' SYSTEM' : '') +
+                        (document.doctype.systemId ? ' "' + document.doctype.systemId + '"' : '') +
+                        '>\n' + document.documentElement.outerHTML;
+                        document.querySelector('form[action="https://validator.w3.org/check"] > input[name="fragment"]').value = html;
+                    });
+                </script>
+            </footer>
+
+        </div>
 
     </body>
 

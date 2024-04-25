@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'players.apps.PlayersConfig'
+    'players.apps.PlayersConfig',
+    'auctioneer.apps.AuctioneerConfig',
+    'franchise.apps.FranchiseConfig',
 ]
 
 MIDDLEWARE = [

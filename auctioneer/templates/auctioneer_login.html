@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    player login
+    auctioneer login
 {% endblock %}
 
 {% block main %}
@@ -10,18 +10,14 @@
         
     
     <form action="/login" method="POST" autocomplete="off" >
-        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Username" autofocus>
+        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Auctioneer Username" autofocus>
         <p>
 
         </p>
         <input type="password" name="password" size="50" class="form-control mb-2 mr-sm-2" placeholder="Password">
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <p>
-
-    </p>
-    <a href="{% url 'players:player_register' %}">Not Registered?</a>
-
+    
 
 
 {% endblock %}
