@@ -7,18 +7,19 @@
 {% block main %}
 
     <img src="">
-    <form action="/register" method="POST" autocomplete="off" >
+    <form action="{% url 'players:player_register' %}" method="POST" autocomplete="off" >
+        {% csrf_token %}
         <div class="form-row">
             <div class="col">
-              <input type="text" class="form-control" placeholder="First name">
+              <input type="text" name="FirstName" class="form-control" placeholder="First name">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Last name">
+              <input type="text" name="LastName" class="form-control" placeholder="Last name">
             </div>
         </div>
 
-        <input type="email" class="form-control mb-2 mr-sm-2" placeholder="Email ID">
-        <input type="number" class="form-control mb-2 mr-sm-2" placeholder="contact number">
+        <input type="email" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email ID">
+        <input type="number" name="contact" class="form-control mb-2 mr-sm-2" placeholder="contact number">
         <select name="native" class="form-select">
             <option value="Indian">Indian</option>
             <option value="overseas">overseas</option>
@@ -51,11 +52,13 @@
             <label> Date of birth</label>
             <input type="date"  class="form-control mb-2 mr-sm-2" name="dob" placeholder="Date of birth">
         <input type="number" class="form-control mb-2 mr-sm-2" name="base price" placeholder="Base price">
+        <!--<input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Username">-->
+
         <input type="password" class="form-control mb-2 mr-sm-2" name="password" placeholder="create password">
-        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="confrim password">
+        <input type="password" class="form-control mb-2 mr-sm-2" name="confpassword" placeholder="confrim password">
 
         
-        <button type="button" class="btn btn-outline-primary btn-lg">submit</button>
+        <button type="submit" class="btn btn-outline-primary btn-lg">submit</button>
         
     </form>
     <script>

@@ -30,6 +30,34 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
+
+                <div>
+                    {% if user.is_authenticated %}
+                        Signed in as <strong>{{ user.username }}</strong>.
+                    {% else %}
+                        Not signed in.
+                    {% endif %}
+                </div>
+    
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                        <a class="nav-link text-white h6" href="{% url 'index' %}">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white h6" href="#about">About</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link text-white h6" href="#services">Services</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white h6" href="#team">Team</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white h6" href="#contact">Contact</a>
+                      </li>
+                    </ul>
+                  </div>
             </nav>
 
             

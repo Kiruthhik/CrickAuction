@@ -9,8 +9,10 @@
     <img src="">
         
     
-    <form action="/login" method="POST" autocomplete="off" >
-        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Franchise Username" autofocus>
+    <form action="{% url 'franchise:franchise_login' %}" method="POST" autocomplete="off" >
+        {% csrf_token %}
+
+        <input autocomplete="false" name="useremail" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Franchise User Mail" autofocus>
         <p>
 
         </p>

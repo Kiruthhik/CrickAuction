@@ -9,14 +9,16 @@
     <img src="">
         
     
-    <form action="/register" method="POST" autocomplete="off" >
+    <form action="{% url 'franchise:franchise_register' %}" method="POST" autocomplete="off" >
+        {% csrf_token %}
         <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Franchise name" autofocus>
         <p>
 
         </p>
+        <input type="email" name="email" class="form-control mb-2 mr-sm-2" placeholder="Email ID">
         <input type="text" name="liscence" class="form-control mb-2 mr-sm-2" placeholder="liscence ID number">
         <input type="password" name="password" size="50" class="form-control mb-2 mr-sm-2" placeholder="Create Password">
-        <input type="password" name="password" class="form-control mb-2 mr-sm-2" placeholder="Confirm password">
+        <input type="password" name="confpassword" class="form-control mb-2 mr-sm-2" placeholder="Confirm password">
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
     <p>
