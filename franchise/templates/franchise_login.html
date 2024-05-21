@@ -12,12 +12,12 @@
     <form action="{% url 'franchise:franchise_login' %}" method="POST" autocomplete="off" >
         {% csrf_token %}
 
-        <input autocomplete="false" name="useremail" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Franchise User Mail" autofocus>
+        <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2 " placeholder="Franchise Username" autofocus>
         <p>
 
         </p>
-        <input type="password" name="password" size="50" class="form-control mb-2 mr-sm-2" placeholder="Password">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <input type="password" name="password" size="50" class="form-control mb-2 mr-sm-2 " placeholder="Password">
+        <button type="submit" class="btn btn-info">Login</button>
     </form>
     <p>
 

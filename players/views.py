@@ -3,7 +3,8 @@ from .models import PlayerProfile
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -16,8 +17,8 @@ def login(request):
 
         if user is not None:
             if user.groups.filter(name='players').exists():
-                login(user)
-                return redirect()
+                auth_login(request,user)
+                return redirect('players:player_dashboard')
             else:
                 messages.warning(request,"login with player credentials")
         else:
@@ -71,3 +72,10 @@ def register(request):
         messages.success(request, "Registration successful.")
         return redirect('players:player_login')  # Assuming you have a login view
     return render(request,'register.html')
+
+@login_required
+def dashboard(request):
+    player = request.user
+    player_data = PlayerProfile.objects.get(user = player)
+
+    return render(request,'players_dashboard.html',{'player_data':player_data})

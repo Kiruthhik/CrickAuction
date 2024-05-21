@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    player login
+{% endblock %}
+
+{% block main %}
+<style>
+    body{
+        background:#747474;
+        text-decoration-color:#ff652f ;
+    }
+    #small {
+                color: #ff652f;
+                /*color:#14a76c*/
+            }
+</style>
+<div class="container rounded  mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://c8.alamy.com/comp/2GPKNRJ/cricket-player-icon-2GPKNRJ.jpg"><span id="small" class="font-weight-bold">{{player_data.user.first_name}} {{ player_data.user.last_name }}</span><span id="small" >{{player_data.user.email}}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Status</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><h3 id="small">{{ player_data.user.first_name }}</h3></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><h3 id="small">{{ player_data.user.last_name }}</h3></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Native</label><h3 id="small">{{ player_data.native }}</h3></div>
+                    <div class="col-md-12"><label class="labels">Role</label><h3 id="small">{{ player_data.role }}</h3></div>
+                    <div class="col-md-12"><label class="labels">Base Price</label><h3 id="small">{{ player_data.base_price }}</h3></div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Current Team</label><h3 id="small">{{ player_data.current_team }}</h3></div>
+                    <div class="col-md-6"><label class="labels">Current Bid</label><h3 id="small">{{ player_data.current_bid }}</h3></div>
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row mt-2">
+                <p><br><br><br></p>
+                <div class="col-md-6"><label class="labels">Batting Style</label><h3 id="small">{{ player_data.batting_style }}</h3></div><br>
+                    <div class="col-md-6"><label class="labels">Bowling Style</label><h3 id="small">{{ player_data.bowling_style }}</h3></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -14,7 +14,9 @@ class PlayerProfile(models.Model):
     batting_style = models.CharField(max_length=20, choices=[('right handed', 'Right handed'), ('left handed', 'Left handed'), ('NULL', 'None')])
     bowling_style = models.CharField(max_length=20, choices=[('right arm fast', 'Right arm fast'), ('right arm medium', 'Right arm medium'), ('right arm spin', 'Right arm spin'), ('left arm fast', 'Left arm fast'), ('left arm medium', 'Left arm medium'), ('left arm spin', 'Left arm spin'), ('NULL', 'None')])
     dob = models.DateField()
-    base_price = models.DecimalField(max_digits=10, decimal_places=2)
+    base_price = models.DecimalField(max_digits=15, decimal_places=2)
+    current_team = models.CharField(max_length=20,default=None,null=True)
+    current_bid = models.DecimalField(max_digits=15,decimal_places=0,default=None,null=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

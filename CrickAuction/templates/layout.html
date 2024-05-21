@@ -16,13 +16,44 @@
 
         <link href="/static/styles.css" rel="stylesheet">
 
+        <style>
+            #head {
+                color: #14a76c; /* Change to your desired color */
+            }
+            .navbar-custom {
+            background-color: #272727; /* Replace with your desired color */
+            }
+    
+            /* Customize other header text colors */
+            .navbar-nav .nav-link {
+                color: #14a76c; /* Change to your desired color */
+                font-weight: bold;
+            }
+            /* Optional: Add hover effect for nav-links */
+            .navbar-nav .nav-link:hover {
+                color: #fcfcfc; /* Change to your desired hover color */
+            }
+            .bgimg {
+            background-image: url('/static/.jpg'); /* Update the path as needed */
+            background-size: cover; /* Ensures the image covers the entire element */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            height: 100vh; /* Sets the height to 100% of the viewport height */
+            width: 100%; /* Sets the width to 100% */
+            }
+            body {
+            background-color: #747474; /* Replace with your desired color */
+            }
+        </style>
+    
+
         <title>IPL Auction: {% block title %}{% endblock %}</title>
 
     </head>
 
     <body>
-        <div class="bgimg">
-            <nav class="bg-primary border navbar navbar-expand-md navbar-light text-white fixed-top">
+        <div>
+            <nav class="navbar-custom border navbar navbar-expand-md fixed-top">
                 <div class="container-fluid" >
                     <h1 id="head"><i>IPL</i> Auction</h1>
                     <!--<a class="navbar-brand" href="/"><span class="blue">I</span><span class="red"></span><span class="yellow">P</span><span class="green">L</span> <span class="red"> Auction</span></a> -->
@@ -31,33 +62,35 @@
                     </button>
                 </div>
 
-                <div>
+                
+    
+                <div class="collapse navbar-collapse" id="navbar-nav">
+                    <ul id="head" class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                        <a class="nav-link  h6"  href="{% url 'index' %}">Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link  h6"  href="#about">About</a>
+                      </li>
+                      <li  class="nav-item ">
+                        <a class="nav-link  h6"  href="{% url 'logout' %}">Logout</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link  h6" href="#team"></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white h6" href="#contact"></a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div id="head">
                     {% if user.is_authenticated %}
                         Signed in as <strong>{{ user.username }}</strong>.
                     {% else %}
                         Not signed in.
                     {% endif %}
                 </div>
-    
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link text-white h6" href="{% url 'index' %}">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link text-white h6" href="#about">About</a>
-                      </li>
-                      <li class="nav-item ">
-                        <a class="nav-link text-white h6" href="#services">Services</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link text-white h6" href="#team">Team</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link text-white h6" href="#contact">Contact</a>
-                      </li>
-                    </ul>
-                  </div>
             </nav>
 
             
