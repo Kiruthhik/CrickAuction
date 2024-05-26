@@ -15,13 +15,14 @@
                 /*color:#14a76c*/
             }
 </style>
+
 {% if messages %}
         <div class="alert alert-info">
             {% for message in messages %}
                 <p>{{ message }}</p>
             {% endfor %}
         </div>
-{% endif %}
+    {% endif %}
 <div class="container rounded  mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
@@ -39,15 +40,23 @@
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Native</label><h3 id="small">{{ player_data.native }}</h3></div>
                     <div class="col-md-12"><label class="labels">Role</label><h3 id="small">{{ player_data.role }}</h3></div>
-                    <div class="col-md-12"><label class="labels">Base Price</label><h3 id="small">{{ player_data.base_price }}</h3></div>
+                    <div class="col-md-12"><label class="labels">Base Price</label><h3 id="small">Rs.{{ player_data.base_price }}</h3></div>
                 </div>
                 
                 <div class="row mt-3">
                     <div class="col-md-6"><label class="labels">Current Team</label><h3 id="small">{{ player_data.current_team }}</h3></div>
-                    <div class="col-md-6"><label class="labels">Current Bid</label><h3 id="small">{{ player_data.current_bid }}</h3></div>
+                    <div class="col-md-6"><label class="labels">Current Bid</label><h3 id="small">Rs.{{ player_data.current_bid }}</h3></div>
                 </div>
+                <form action="{% url 'franchise:bid' player_data.user.email %}" method="POST">
+                    {% csrf_token %}
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="number" class="form-control" placeholder="Place bid" name="bid"></div>
+                    <div class="col-md-6"><button type="submit" class="btn btn-info">Bid</button>
+                    </div>
+                </div>
+                </form>
             </div>
-        </div>
+        </div>      
         <div class="col-md-4">
             <div class="row mt-2">
                 <p><br><br><br></p>
