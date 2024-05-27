@@ -110,3 +110,17 @@ def dashboard1(request):
         'franchise': franchise_data
     }
     return render(request,'dashboard.html',context)
+
+@login_required
+def report(request):
+    franchises = FranchiseProfile.objects.all()
+    franchise_data = []
+
+    for franchise in franchises:
+        players = list(PlayerProfile.objects.filter(current_team = franchise.user.username))
+        franchise_data.append({
+            'franchise':franchise,
+            'players':players
+        })
+
+    return render(request,'report.html',{'franchise_data':franchise_data})

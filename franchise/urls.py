@@ -9,5 +9,6 @@ urlpatterns = [
     path('dashboard/',views.dashboard,name='franchise_dashboard'),
     path('bid/<str:player_email>',views.bid,name='bid'),
     path('dashboard1/',views.dashboard1,name='dashboard1'),
+    path('report/',views.report,name = 'report'),
 ]
 
