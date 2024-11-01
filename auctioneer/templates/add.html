@@ -11,6 +11,13 @@
         background:#747474;
     }
 
+    input.form-control {
+    position: relative; /* Ensures it is above any overlapping elements */
+    z-index: 1;         /* Bring it to the front */
+    margin-top: 10px;   /* Adds space above to prevent overlap */
+    }
+
+
     .card {
         box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
     }
@@ -87,9 +94,11 @@
                         <div class="col-sm-5">
                         <h4 class="h5">{{ franchise.user.username }} </h4>
                         </div>
-                        
+                        <div>                 
+                                   <input type="number" class="form-control m-2" placeholder="alot purse money" id="purse-{{franchise.user.username}}">
+                        </div>
                         <div class="col-sm-3 text-lg-end">
-                        <a href="#" class="btn btn-primary stretched-link">Add</a>
+                        <a href="javascript:void(0);" class="btn btn-primary  add-franchise-btn" data-name="{{franchise.user.username}}">Add</a>
                         </div>
                     </div>
                 </div>
@@ -122,13 +131,58 @@
                         <span class="badge bg-secondary"></span>
                         </div>
                         <div class="col-sm-3 text-lg-end">
-                        <a href="#" class="btn btn-primary stretched-link">Add</a>
+                        <a href="javascript:void(0);" class="btn btn-primary stretched-link add-player-btn" data-name="{{player.user.first_name}}">Add</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+
+    <script>
+        async function addParticipant(name, type) {
+            try {
+                const purse = type==='franchise' ?  document.getElementById(`purse-${name}`).value : null;
+                const response = await fetch("{% url 'auctioneer:add' auc_name=name %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        'name': name,
+                        'type': type,
+                        'purse': purse
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert(`${type} ${name} added successfully!`);
+                } else {
+                    alert(`Failed to add ${type} ${name}.`);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        // Attach event listeners to "Add" buttons for franchises
+        document.querySelectorAll('.add-franchise-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                const franchiseName = event.target.dataset.name;
+                addParticipant(franchiseName, 'franchise');
+            });
+        });
+
+        // Attach event listeners to "Add" buttons for players
+        document.querySelectorAll('.add-player-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                const playerName = event.target.dataset.name;
+                addParticipant(playerName, 'player');
+            });
+        });
+    </script>
     
     
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
