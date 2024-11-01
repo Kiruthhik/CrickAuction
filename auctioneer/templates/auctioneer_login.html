@@ -5,11 +5,19 @@
 {% endblock %}
 
 {% block main %}
+{% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+{% endif %}
     
     <img src="">
         
     
-    <form action="/login" method="POST" autocomplete="off" >
+    <form action="{% url 'auctioneer:auctioneer_login' %}" method="POST" autocomplete="off" >
+        {% csrf_token %}
         <input autocomplete="false" name="username" type="text"  size="30" class="form-control mb-2 mr-sm-2" placeholder="Auctioneer Username" autofocus>
         <p>
 

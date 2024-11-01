@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    auctioneer index
+{% endblock %}
+
+{% block main %}
+    <div class="container mb-2">
+        <div class="row  m-3" >
+            <div class="col-md-4 border border-light bg-secondary text-light m-3">
+                <div class="display-5">Auction name</div>
+                <p>starts 10pm  12th Aug</p>
+            </div>
+            <div class="col-md-4 border border-light bg-secondary text-light m-3">
+                <div class="display-5">Auction name</div>
+                <p>starts 10pm  12th Aug</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container bg-light p-5 ">
+        <div class="auction-form">
+            <form id="auctionForm" action="{% url 'auctioneer:auctioneer_index' %}" method="POST" onsubmit="after_schedule">
+                {% csrf_token %}
+                <div class="form-group row mb-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">Auction Name</label>
+                  <div class="col-sm-10">
+                    <input type="text"  class="form-control" name="name" id="auction-name" placeholder="name" autofocus>
+                  </div>
+                </div>
+                <div class="form-group row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Schedule Time</label>
+                  <div class="col-sm-10">
+                    <input type="datetime-local" class="form-control" name="time">
+                  </div>
+                </div>
+                <input type="submit" onclick="after_schedule" class="btn btn-info" value="Schedule">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function after_schedule(){
+            const auction_name = document.getElementById('auction-name').value;
+            console.log(auction_name);
+            document.getElementById("auctionForm").submit();
+            document.querySelector('.auction-form').style.display = 'none';
+        }
+    </script>
+    
+{% endblock %}
