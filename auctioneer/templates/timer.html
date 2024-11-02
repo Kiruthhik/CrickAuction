@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block title%}
+Live Auction
+{% endblock %}
+
+{% block main %}
+
+<style>
+    p {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 0px;
+    }
+</style>
+
+<body>
+    <p>{{ auction_name }} <br>  starts in <br></p>
+    <p id="demo"></p>
+
+    <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("{{ scheduled_time|date:'Y-m-d H:i:s' }}").getTime();    
+
+    // Update the countdown every 1 second
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("demo").innerHTML = days + " days " + hours + " hrs "
+            + minutes + " mins " + seconds + " s ";
+
+        if (distance < 0) {
+            location.href = "{% url 'auctioneer:auction' auction_name %}";
+        }
+    }, 1000);
+    </script>
+</body>
+
+{% endblock %}

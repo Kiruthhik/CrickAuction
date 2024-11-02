@@ -5,12 +5,20 @@
 {% endblock %}
 
 {% block main %}
+    <style>
+        .col-md-4:hover{
+            opacity: 0.7;
+        }
+    </style>
     <div class="container mb-2">
-        <div class="row  m-3" >
-            <div class="col-md-4 border border-light bg-secondary text-light m-3">
-                <div class="display-5">Auction name</div>
-                <p>starts 10pm  12th Aug</p>
-            </div>
+        <div class="row  m-1" >
+            {% for auction in auctions %}
+                <div class="col-md-4 border border-light bg-dark text-light m-3 rounded-3" onclick="location.href='{% url 'auctioneer:auction' auction.name %}';">
+                    <div class="display-5">{{auction.name}}</div>
+                    <p>Starts  {{auction.scheduled_time}}</p>
+                    
+                </div>
+            {% endfor %}
             <div class="col-md-4 border border-light bg-secondary text-light m-3">
                 <div class="display-5">Auction name</div>
                 <p>starts 10pm  12th Aug</p>
@@ -18,7 +26,7 @@
         </div>
     </div>
     
-    <div class="container bg-light p-5 ">
+    <div class="container bg-light p-5 rounded-3 ">
         <div class="auction-form">
             <form id="auctionForm" action="{% url 'auctioneer:auctioneer_index' %}" method="POST" onsubmit="after_schedule">
                 {% csrf_token %}

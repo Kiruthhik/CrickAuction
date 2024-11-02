@@ -5,6 +5,8 @@ from .models import *
 from players.models import PlayerProfile
 from franchise.models import FranchiseProfile
 from django.http import JsonResponse
+import datetime
+from pytz import UTC
 # Create your views here.
 
 def login(request):
@@ -29,8 +31,8 @@ def index(request):
         time = request.POST.get('time')
         LiveAuction.objects.create(name = name, scheduled_time = time).save
         return redirect('auctioneer:add',auc_name=name)
-
-    return render(request,'auctioneer_index.html')
+    auctions = list(LiveAuction.objects.all())
+    return render(request,'auctioneer_index.html',{'auctions':auctions})
 
 def add(request,auc_name):
     auction = LiveAuction.objects.get(name=auc_name)
@@ -65,3 +67,13 @@ def add(request,auc_name):
         'name': auc_name
     }
     return render(request,'add.html',content)
+
+
+def auction(request, auc_name):
+    auction_instance = LiveAuction.objects.get(name=auc_name)
+    time = auction_instance.scheduled_time
+    if time > datetime.datetime.now().replace(tzinfo=UTC):
+        time_naive = time.replace(tzinfo=None)
+        return render(request, 'timer.html', {'scheduled_time': time_naive, 'auction_name': auc_name})
+    else:
+        pass
