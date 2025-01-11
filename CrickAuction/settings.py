@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'players.apps.PlayersConfig',
     'auctioneer.apps.AuctioneerConfig',
     'franchise.apps.FranchiseConfig',
+    'background_task',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login as auth_login
+from django.http import HttpResponse
 from django.contrib import messages
 from .models import *
 from players.models import PlayerProfile
@@ -7,6 +8,7 @@ from franchise.models import FranchiseProfile
 from django.http import JsonResponse
 import datetime
 from pytz import UTC
+from django.utils.timezone import make_aware
 # Create your views here.
 
 def login(request):
@@ -29,9 +31,10 @@ def index(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         time = request.POST.get('time')
+        #time = make_aware(time)
         LiveAuction.objects.create(name = name, scheduled_time = time).save
         return redirect('auctioneer:add',auc_name=name)
-    auctions = list(LiveAuction.objects.all())
+    auctions = list(LiveAuction.objects.filter(scheduled_time__gt = datetime.datetime.now().replace(tzinfo=UTC)))
     return render(request,'auctioneer_index.html',{'auctions':auctions})
 
 def add(request,auc_name):
@@ -76,4 +79,4 @@ def auction(request, auc_name):
         time_naive = time.replace(tzinfo=None)
         return render(request, 'timer.html', {'scheduled_time': time_naive, 'auction_name': auc_name})
     else:
-        pass
+        return HttpResponse("else part")

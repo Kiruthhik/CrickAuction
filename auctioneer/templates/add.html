@@ -118,11 +118,8 @@
                         <div class="col-sm-5">
                         <h4 class="h5">{{ player.user.first_name }} {{ player.user.last_name }}</h4>
                         <span class="badge bg-secondary">{{ player.native }}</span> 
-                        {% if player.current_team is none %}
-                            <span class="badge bg-success">Base Price<br>Rs.{{ player.base_price }}</span>
-                        {% else %}
-                            <span class="badge bg-success">{{player.current_team}} <br>Rs.{{player.current_bid}}</span>
-                        {% endif %}
+                        <span class="badge bg-success">Base Price<br>Rs.{{ player.base_price }}</span>
+                        
                         </div>
                         <div class="col-sm-4 py-2">
                         <span class="badge bg-info">{{ player.batting_style }}<br> batter</span>
