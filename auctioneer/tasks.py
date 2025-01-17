@@ -2,6 +2,7 @@ from background_task import background
 from .models import LiveAuction
 from datetime import datetime, timedelta
 from pytz import UTC
+import time
 #import logging
 #logger = logging.getLogger(__name__)
 auction_started = False
@@ -28,9 +29,12 @@ def start_auction(auction):
     # Add backend logic for auction processing
     players = auction.auction_players.all()
     for player in players:
+        auction.current_player = player
         teams = player.interested_team.all()
         while(teams.count() >= 2):
             for team in teams:
+                auction.current_team_bid = team
+                time.sleep(10)
                 
 
 

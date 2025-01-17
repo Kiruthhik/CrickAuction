@@ -82,6 +82,7 @@ def auction(request, auc_name):
     time = auction_instance.scheduled_time
     if time > datetime.datetime.now().replace(tzinfo=UTC):
         time_naive = time.replace(tzinfo=None)
-        return render(request, 'timer.html', {'scheduled_time': time_naive, 'auction_name': auc_name})
+        #return render(request, 'timer.html', {'scheduled_time': time_naive, 'auction_name': auc_name})
+        return render(request,"live_auction.html")
     else:
         return HttpResponse("else part")
