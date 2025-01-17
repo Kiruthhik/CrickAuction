@@ -83,6 +83,21 @@ def auction(request, auc_name):
     if time > datetime.datetime.now().replace(tzinfo=UTC):
         time_naive = time.replace(tzinfo=None)
         #return render(request, 'timer.html', {'scheduled_time': time_naive, 'auction_name': auc_name})
-        return render(request,"live_auction.html")
+        return redirect('auctioneer:live_auction',auc_name)
     else:
-        return HttpResponse("else part")
+        return redirect('auctioneer:live_auction')
+    
+def live_auction(request,auc_name):
+    auction = LiveAuction.objects.get(name = auc_name)
+    current_player = auction.current_player
+    if(current_player):
+        current_team = auction.current_team_bid
+        teams = current_player.interested_team.all()
+        data = {
+            "current_player":current_player,
+            "current_team":current_team,
+            "teams":teams
+        }
+    else:
+        return HttpResponse("no current player")
+    return render(request,"live_auction.html",data)
