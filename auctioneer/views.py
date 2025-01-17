@@ -47,12 +47,17 @@ def add(request,auc_name):
         try:
             if type == 'franchise':
                 franchise = FranchiseProfile.objects.get(user__username=name)
-                purse = data.get('purse')
-                AuctionFranchise.objects.create(auction=auction,original_franchise=franchise,purse=purse).save
+                purse = data.get('purse',0)
+                #AuctionFranchise.objects.create(auction=auction,original_franchise=franchise,purse=purse).save
+                team = AuctionFranchise.objects.create(original_franchise=franchise,purse=purse)
+                auction.auction_franchises.add(team)
             elif type == 'player':
                 player = PlayerProfile.objects.get(user__first_name=name)
-                auc_player = AuctionPlayer.objects.create(auction=auction,original_profile=player)
-                teams = list(AuctionFranchise.objects.filter(auction=auction))
+                #auc_player = AuctionPlayer.objects.create(auction=auction,original_profile=player)
+                #teams = list(AuctionFranchise.objects.filter(auction=auction))
+                auc_player = AuctionPlayer.objects.create(original_profile=player)
+                auction.auction_players.add(auc_player)
+                teams = list(auction.auction_franchises.all())
                 for team in teams:
                     auc_player.interested_team.add(team)
             return JsonResponse({'success': True, 'message': f'{type} {name} added successfully.'})

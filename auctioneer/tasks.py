@@ -26,3 +26,11 @@ def start_auction(auction):
     # Logic to start the auction
     print(f"Starting auction: {auction.name}")
     # Add backend logic for auction processing
+    players = auction.auction_players.all()
+    for player in players:
+        teams = player.interested_team.all()
+        while(teams.count() >= 2):
+            for team in teams:
+                
+
+
