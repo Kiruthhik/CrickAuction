@@ -30,10 +30,12 @@ def start_auction(auction):
     players = auction.auction_players.all()
     for player in players:
         auction.current_player = player
+        auction.save()
         teams = player.interested_team.all()
         while(teams.count() >= 2):
             for team in teams:
                 auction.current_team_bid = team
+                auction.save()
                 time.sleep(10)
                 
 

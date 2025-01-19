@@ -11,19 +11,20 @@
         }
     </style>
     <div class="container mb-2">
-        <div class="row  m-1" >
+        <br>
+        <div class="row m-1">
             {% for auction in auctions %}
-                <div class="col-md-4 border border-light bg-dark text-light m-3 rounded-3" onclick="location.href='{% url 'auctioneer:auction' auction.name %}';">
-                    <div class="display-5">{{auction.name}}</div>
-                    <p>Starts  {{auction.scheduled_time}}</p>
-                    
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-dark text-light h-100" onclick="location.href='{% url 'auctioneer:auction' auction.name %}';">
+                        <div class="card-body">
+                            <h5 class="card-title">{{auction.name}}</h5>
+                            <p class="card-text">Starts {{auction.scheduled_time}}</p>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
-            <div class="col-md-4 border border-light bg-secondary text-light m-3">
-                <div class="display-5">Auction name</div>
-                <p>starts 10pm  12th Aug</p>
-            </div>
         </div>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     </div>
     
     <div class="container bg-light p-5 rounded-3 ">

@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .models import FranchiseProfile
 from players.models import PlayerProfile
 from django.shortcuts import render, get_object_or_404
-
+from auctioneer.models import *
+import datetime
+from pytz import UTC
     # Create your views here.
 def login(request):
         if request.method == 'POST':
@@ -56,7 +58,7 @@ def register(request):
 
 def dashboard(request):
         players = list(PlayerProfile.objects.all())
-        return render(request,'franchise_dashboard.html',{'players':players})
+        return render(request,'franchise_dashboard.html',{'players':players })
 
 @login_required
 def bid(request,player_email):
@@ -106,9 +108,11 @@ def dashboard1(request):
         franchise_user = request.user
         franchise_data = get_object_or_404(FranchiseProfile, user=franchise_user)
         players = list(PlayerProfile.objects.filter(current_team = franchise_user.username))
+        auctions = list(LiveAuction.objects.filter(scheduled_time__gt = datetime.datetime.now().replace(tzinfo=UTC)))
         context = {
             'players': players,
-            'franchise': franchise_data
+            'franchise': franchise_data,
+            'auctions': auctions
         }
         return render(request,'dashboard.html',context)
 

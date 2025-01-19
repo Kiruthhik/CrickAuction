@@ -10,7 +10,7 @@ live auction
     <!-- Auction Header -->
     <div class="row mb-4">
       <div class="col text-center">
-        <h1 class="display-6">Live Auction</h1>
+        <h1 class="display-6">{{auction}}</h1>
       </div>
     </div>
 
@@ -69,7 +69,7 @@ live auction
                 <div id="{{team.original_franchise.user.username}}">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{team.original_franchise.user.username}}
-                    <span class="badge bg-primary rounded-pill">₹{{team.original_franchise.purse_money}}</span>
+                    <span class="badge bg-primary rounded-pill">₹{{team.purse}}</span>
                     <span class="badge bg-warning"> </span>
                   </li>
                 </div>
@@ -93,7 +93,22 @@ live auction
 <script>
     document.addEventListener('DOMContentLoaded',(event)=>{
         const team = document.getElementById('{{current_team.original_franchise.user.username}}');
-        
+        console.log(team);
+        if(team){
+          const timerBadge = team.querySelector('.badge.bg-warning');
+          let countdown = 10;
+
+          const timerInterval = setInterval(() => {
+        if (countdown > 0) {
+          timerBadge.textContent = `${countdown}s`; // Update the timer display
+          countdown--;
+        } else {
+          timerBadge.textContent = 'Time Up'; // Display "Time Up" when the countdown ends
+          clearInterval(timerInterval); // Stop the timer
+          window.location.href = '{% url 'auctioneer:live_auction' auction %}'; // Redirect to the next player
+        }
+      }, 1000);
+        }
     });
 </script>
 
